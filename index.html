@@ -69,17 +69,17 @@
       <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-10">
         专为同学们打造，整合学习资源、编程工具、专业指导，让计算机学习更简单
       </p>
-      <!-- 学生登录 -->
-      <form action="/login" method="POST" class="max-w-sm mx-auto flex gap-2 mb-4">
-        <input type="text" name="username" placeholder="输入账号" class="flex-1 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 border-none">
-        <input type="password" name="password" placeholder="输入密码" class="flex-1 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 border-none">
-        <button class="btn-gradient">登录</button>
-      </form>
+      <!-- 静态登录框（无后端，点击仅提示） -->
+      <div class="max-w-sm mx-auto flex gap-2 mb-4">
+        <input type="text" placeholder="输入账号" class="flex-1 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 border-none">
+        <input type="password" placeholder="输入密码" class="flex-1 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 border-none">
+        <button class="btn-gradient" onclick="alert('静态页面无登录功能，默认账号：student 密码：123456')">登录</button>
+      </div>
       <p class="text-sm text-gray-500">默认账号：student  密码：123456</p>
     </div>
   </section>
 
-  <!-- 校园公告（后端动态加载） -->
+  <!-- 校园公告（静态内容，替换后端循环） -->
   <section id="notice" class="py-16 px-4">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-10">
@@ -88,9 +88,11 @@
       </div>
       <div class="bg-white dark:bg-dark rounded-2xl p-8 shadow-md">
         <div class="space-y-4">
-          {% for item in notices %}
-          <div class="p-3 border-b border-gray-200 dark:border-gray-700">{{ item }}</div>
-          {% endfor %}
+          <!-- 直接写死公告内容，替换 {% for item in notices %} -->
+          <div class="p-3 border-b border-gray-200 dark:border-gray-700">2025双创中心编程竞赛报名截止6月10日</div>
+          <div class="p-3 border-b border-gray-200 dark:border-gray-700">Python实训课时间调整为每周四下午2-4点</div>
+          <div class="p-3 border-b border-gray-200 dark:border-gray-700">期末复习资料已上传至学习平台（含答案）</div>
+          <div class="p-3 border-b border-gray-200 dark:border-gray-700">双创实验室开放时间：每日8:00-22:00</div>
         </div>
       </div>
     </div>
@@ -129,7 +131,7 @@
     </div>
   </section>
 
-  <!-- 学习资源（后端动态加载） -->
+  <!-- 学习资源（静态内容，替换后端循环） -->
   <section id="resource" class="py-16 px-4">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-10">
@@ -137,17 +139,43 @@
         <p class="text-gray-600 dark:text-gray-400">计算机专业核心资料，免费下载</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {% for item in resources %}
+        <!-- 直接写死资源内容，替换 {% for item in resources %} -->
         <div class="bg-white dark:bg-dark rounded-2xl p-6 shadow-md">
           <div class="flex justify-between items-center">
             <div>
-              <h3 class="font-bold text-lg">{{ item.name }}</h3>
-              <p class="text-sm text-gray-500 dark:text-gray-400">{{ item.type }}</p>
+              <h3 class="font-bold text-lg">C语言入门教程（2025版）</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">PDF文档 | 2.4MB</p>
             </div>
-            <a href="{{ item.download }}" class="btn-gradient px-4 py-2 text-sm">立即下载</a>
+            <button class="btn-gradient px-4 py-2 text-sm" onclick="alert('静态页面无下载功能～')">立即下载</button>
           </div>
         </div>
-        {% endfor %}
+        <div class="bg-white dark:bg-dark rounded-2xl p-6 shadow-md">
+          <div class="flex justify-between items-center">
+            <div>
+              <h3 class="font-bold text-lg">Java核心知识点总结</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Word文档 | 1.8MB</p>
+            </div>
+            <button class="btn-gradient px-4 py-2 text-sm" onclick="alert('静态页面无下载功能～')">立即下载</button>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-dark rounded-2xl p-6 shadow-md">
+          <div class="flex justify-between items-center">
+            <div>
+              <h3 class="font-bold text-lg">前端项目实战案例（HTML+CSS+JS）</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">压缩包 | 5.2MB</p>
+            </div>
+            <button class="btn-gradient px-4 py-2 text-sm" onclick="alert('静态页面无下载功能～')">立即下载</button>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-dark rounded-2xl p-6 shadow-md">
+          <div class="flex justify-between items-center">
+            <div>
+              <h3 class="font-bold text-lg">算法刷题笔记（100道经典题）</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">PDF文档 | 3.1MB</p>
+            </div>
+            <button class="btn-gradient px-4 py-2 text-sm" onclick="alert('静态页面无下载功能～')">立即下载</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -165,6 +193,7 @@
   </footer>
 
   <script>
+    // 深色主题切换（保留原有功能）
     const themeBtn = document.getElementById('themeBtn');
     themeBtn.addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');
